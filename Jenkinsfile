@@ -38,6 +38,11 @@ pipeline {
         }
 
         stage('Deploy to Test') {
+            when {
+                not {
+                    branch 'main'
+                }
+            }
             steps {
                 sh '''
                     oc set image deployment home-automation \
@@ -48,6 +53,9 @@ pipeline {
         }
 
         stage('Deploy to Production') {
+            when {
+                branch 'main'
+            }
             steps {
                 sh '''
                     oc set image deployment home-automation \
