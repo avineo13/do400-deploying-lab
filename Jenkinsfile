@@ -9,7 +9,9 @@ pipeline {
     stages {
 
         stage('Test') {
-            sh './mvnw verify'
+            steps {
+                sh './mvnw verify'
+            }
         }
 
     }
